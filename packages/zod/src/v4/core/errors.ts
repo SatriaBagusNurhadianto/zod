@@ -517,7 +517,7 @@ export function toDotPath(_path: readonly (string | number | symbol | StandardSc
   for (const seg of path) {
     if (typeof seg === "number") segs.push(`[${seg}]`);
     else if (typeof seg === "symbol") segs.push(`[${JSON.stringify(String(seg))}]`);
-    else if (/[^\w$]/.test(seg)) segs.push(`[${JSON.stringify(seg)}]`);
+    else if (seg === "" || /[^\w$]/.test(seg)) segs.push(`[${JSON.stringify(seg)}]`);
     else {
       if (segs.length) segs.push(".");
       segs.push(seg);
